@@ -263,15 +263,24 @@ func fmodretAttachOverride(load *Program, bpfDir string,
 	return nil
 }
 
+var inited bool
+
 func KprobeAttach(load *Program, bpfDir string) AttachFunc {
 	return func(coll *ebpf.Collection, collSpec *ebpf.CollectionSpec,
 		prog *ebpf.Program, spec *ebpf.ProgramSpec) (unloader.Unloader, error) {
 
 		if load.Override {
 			if load.OverrideFmodRet {
-				if err := fmodretAttachOverride(load, bpfDir, coll, collSpec); err != nil {
-					return nil, err
+				if !inited {
+					// Load fmodret program in load.
+					if err := fmodretAttachOverride(load, bpfDir, coll, collSpec); err != nil {
+						return nil, err
+					}
+					logger.GetLogger().Info("SAM: loading fmodret for once")
+
+					inited = true
 				}
+
 			} else {
 				if err := kprobeAttachOverride(load, bpfDir, coll, collSpec); err != nil {
 					return nil, err
