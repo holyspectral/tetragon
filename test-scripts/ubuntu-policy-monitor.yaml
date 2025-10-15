@@ -1,0 +1,14 @@
+apiVersion: security.rancher.io/v1alpha1
+kind: WorkloadSecurityPolicy
+metadata:
+  name: deploy-ubuntu-deployment
+  namespace: default
+spec:
+  mode: monitor
+  rules:
+    executables:
+      allowed:
+      - /usr/bin/sleep
+  selector:
+    matchLabels:
+      app: ubuntu
