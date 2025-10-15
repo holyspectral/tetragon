@@ -133,6 +133,8 @@ const (
 
 	KeyExecveMapEntries = "execve-map-entries"
 	KeyExecveMapSize    = "execve-map-size"
+
+	KeyPolicyFilterMapEntries = "policy-filter-map-entries"
 )
 
 type UsernameMetadaCode int
@@ -285,6 +287,9 @@ func ReadAndSetFlags() error {
 
 	Config.ExecveMapEntries = viper.GetInt(KeyExecveMapEntries)
 	Config.ExecveMapSize = viper.GetString(KeyExecveMapSize)
+
+	viper.SetDefault(KeyPolicyFilterMapEntries, defaults.DefaultPolicyFilterMapEntries)
+	Config.PolicyFilterMapEntries = viper.GetInt(KeyPolicyFilterMapEntries)
 	return nil
 }
 
@@ -477,4 +482,6 @@ func AddFlags(flags *pflag.FlagSet) {
 
 	flags.Int(KeyExecveMapEntries, 0, "Set entries for execve_map table (default 32768)")
 	flags.String(KeyExecveMapSize, "", "Set size for execve_map table (allows K/M/G suffix)")
+
+	flags.Int(KeyPolicyFilterMapEntries, 0, "Set entries for policy_filter_map table (default 128)")
 }

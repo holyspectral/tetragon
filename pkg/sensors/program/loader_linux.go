@@ -18,6 +18,7 @@ import (
 	cachedbtf "github.com/cilium/tetragon/pkg/btf"
 	"github.com/cilium/tetragon/pkg/logger"
 	"github.com/cilium/tetragon/pkg/logger/logfields"
+	"github.com/cilium/tetragon/pkg/option"
 	"github.com/cilium/tetragon/pkg/sensors/unloader"
 )
 
@@ -898,6 +899,10 @@ func doLoadProgram(
 	spec, err := ebpf.LoadCollectionSpec(load.Name)
 	if err != nil {
 		return nil, fmt.Errorf("loading collection spec failed: %w", err)
+	}
+
+	if _, ok := spec.Maps["policy_filter_maps"]; ok {
+		spec.Maps["policy_filter_maps"].MaxEntries = uint32(option.Config.PolicyFilterMapEntries)
 	}
 
 	if load.RewriteConstants != nil {

@@ -56,6 +56,8 @@ const (
 
 	// defaults for the process cache
 	DefaultProcessCacheGCInterval = 30 * time.Second
+
+	DefaultPolicyFilterMapEntries = 128
 )
 
 var (

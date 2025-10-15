@@ -128,6 +128,8 @@ type config struct {
 
 	ExecveMapEntries int
 	ExecveMapSize    string
+
+	PolicyFilterMapEntries int
 }
 
 var (
