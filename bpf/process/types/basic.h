@@ -703,6 +703,8 @@ FUNC_INLINE void *get_string_map(int index, __u32 map_idx)
 FUNC_LOCAL long
 filter_char_buf_equal(struct selector_arg_filter *filter, char *arg_str, uint orig_len)
 {
+	bpf_printk("sam: %s", arg_str);
+
 	__u32 *map_ids = (__u32 *)&filter->value;
 	char *heap, *zero_heap;
 	void *string_map;
@@ -915,6 +917,31 @@ filter_char_buf(struct selector_arg_filter *filter, char *args, int value_off)
 	case op_filter_str_postfix:
 	case op_filter_str_notpostfix:
 		match = filter_char_buf_postfix(filter, arg_str, len);
+		break;
+	}
+
+	return is_not_operator(filter->op) ? !match : match;
+}
+
+FUNC_LOCAL long
+filter_bpf_map_buf(struct selector_arg_filter *filter, char *args)
+{
+	long match = 0;
+	struct bpf_map_info_type *bm = (struct bpf_map_info_type *)args;
+
+	// TODO: length issue
+	switch (filter->op) {
+	case op_filter_eq:
+	case op_filter_neq:
+		match = filter_char_buf_equal(filter, bm->map_name, BPF_OBJ_NAME_LEN);
+		break;
+	case op_filter_str_prefix:
+	case op_filter_str_notprefix:
+		match = filter_char_buf_prefix(filter, bm->map_name, BPF_OBJ_NAME_LEN);
+		break;
+	case op_filter_str_postfix:
+	case op_filter_str_notpostfix:
+		match = filter_char_buf_postfix(filter, bm->map_name, BPF_OBJ_NAME_LEN);
 		break;
 	}
 
@@ -2052,6 +2079,10 @@ selector_arg_offset(__u8 *f, struct msg_generic_kprobe *e, __u32 selidx,
 		case data_loc_type:
 			/* for strings, we just encode the length */
 			pass &= filter_char_buf(filter, args, 4);
+			break;
+		case bpf_map_type:
+			/* for bpf_map_type, we encode nothing */
+			pass &= filter_bpf_map_buf(filter, args);
 			break;
 		case char_buf:
 			/* for buffers, we just encode the expected length and the
