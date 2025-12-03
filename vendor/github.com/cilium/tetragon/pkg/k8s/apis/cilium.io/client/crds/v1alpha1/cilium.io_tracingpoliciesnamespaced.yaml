@@ -509,6 +509,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -921,6 +922,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -1268,6 +1270,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -1680,6 +1683,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -2063,6 +2067,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -2475,6 +2480,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -3036,6 +3042,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -3448,6 +3455,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -3773,6 +3781,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action
@@ -4185,6 +4194,7 @@ spec:
                                   - NotifyEnforcer
                                   - CleanupEnforcerNotification
                                   - Set
+                                  - UpdateMap
                                   type: string
                                 argError:
                                   description: error value for override action

@@ -45,6 +45,7 @@ const (
 	ActionTypeNotifyEnforcer              = 12
 	ActionTypeCleanupEnforcerNotification = 13
 	ActionTypeSet                         = 14
+	ActionTypeUpdateMap                   = 15
 )
 
 var actionTypeTable = map[string]uint32{
@@ -63,6 +64,7 @@ var actionTypeTable = map[string]uint32{
 	"notifyenforcer":              ActionTypeNotifyEnforcer,
 	"cleanupenforcernotification": ActionTypeCleanupEnforcerNotification,
 	"set":                         ActionTypeSet,
+	"updatemap":                   ActionTypeUpdateMap,
 }
 
 var actionTypeStringTable = map[uint32]string{
@@ -80,6 +82,7 @@ var actionTypeStringTable = map[uint32]string{
 	ActionTypeUntrackSock:                 "untracksock",
 	ActionTypeCleanupEnforcerNotification: "cleanupenforcernotification",
 	ActionTypeSet:                         "set",
+	ActionTypeUpdateMap:                   "updatemap",
 }
 
 const (
