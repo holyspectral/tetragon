@@ -533,6 +533,10 @@ spec:
                                     action
                                   format: int32
                                   type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
+                                  format: int32
+                                  type: integer
                                 argRegs:
                                   description: An arg value for the regs action
                                   items:
@@ -944,6 +948,10 @@ spec:
                                 argName:
                                   description: An arg index for the filename for fdInstall
                                     action
+                                  format: int32
+                                  type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
                                   format: int32
                                   type: integer
                                 argRegs:
@@ -1294,6 +1302,10 @@ spec:
                                     action
                                   format: int32
                                   type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
+                                  format: int32
+                                  type: integer
                                 argRegs:
                                   description: An arg value for the regs action
                                   items:
@@ -1705,6 +1717,10 @@ spec:
                                 argName:
                                   description: An arg index for the filename for fdInstall
                                     action
+                                  format: int32
+                                  type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
                                   format: int32
                                   type: integer
                                 argRegs:
@@ -2091,6 +2107,10 @@ spec:
                                     action
                                   format: int32
                                   type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
+                                  format: int32
+                                  type: integer
                                 argRegs:
                                   description: An arg value for the regs action
                                   items:
@@ -2502,6 +2522,10 @@ spec:
                                 argName:
                                   description: An arg index for the filename for fdInstall
                                     action
+                                  format: int32
+                                  type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
                                   format: int32
                                   type: integer
                                 argRegs:
@@ -3066,6 +3090,10 @@ spec:
                                     action
                                   format: int32
                                   type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
+                                  format: int32
+                                  type: integer
                                 argRegs:
                                   description: An arg value for the regs action
                                   items:
@@ -3477,6 +3505,10 @@ spec:
                                 argName:
                                   description: An arg index for the filename for fdInstall
                                     action
+                                  format: int32
+                                  type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
                                   format: int32
                                   type: integer
                                 argRegs:
@@ -3805,6 +3837,10 @@ spec:
                                     action
                                   format: int32
                                   type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
+                                  format: int32
+                                  type: integer
                                 argRegs:
                                   description: An arg value for the regs action
                                   items:
@@ -4216,6 +4252,10 @@ spec:
                                 argName:
                                   description: An arg index for the filename for fdInstall
                                     action
+                                  format: int32
+                                  type: integer
+                                argOffset:
+                                  description: An arg value for the raw access
                                   format: int32
                                   type: integer
                                 argRegs:
