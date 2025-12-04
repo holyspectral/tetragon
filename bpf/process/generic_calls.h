@@ -930,7 +930,7 @@ do_action(void *ctx, __u32 i, struct selector_action *actions, bool *post, bool 
 
 	polacct = POLICY_INVALID_ACT_;
 	switch (action) {
-	case: ACTION_UPDATE_MAP:
+	case ACTION_UPDATE_MAP:
 		// SAM: experiment
 		args = get_arg(e, 0);
 		bpf_printk("sam: do_action: %d", args[0]); // length
