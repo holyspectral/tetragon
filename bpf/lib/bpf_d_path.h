@@ -306,7 +306,7 @@ __d_path_local(const struct path *path, char *buf, int *buflen, int *error)
 	struct fs_struct *fs;
 
 	task = (struct task_struct *)get_current_task();
-	probe_read(&fs, sizeof(fs), _(&task->fs));
+	probe_read(&fs, sizeof(fs), _(&task->fs)+*buflen);
 	*error = path_with_deleted(path, _(&fs->root), buf, &res, buflen);
 	return res;
 }
