@@ -910,7 +910,7 @@ do_set_action(void *ctx, struct msg_generic_kprobe *e, __u32 arg_idx, __u32 arg_
 FUNC_LOCAL __u32
 do_action(void *ctx, __u32 i, struct selector_action *actions, bool *post, bool enforce_mode)
 {
-	__u32 index __maybe_unused, value __maybe_unused;
+	__u32 index __maybe_unused, value __maybe_unused, offset __maybe_unused, size __maybe_unused;
 	int signal __maybe_unused = FGS_SIGKILL;
 	int action = actions->act[i];
 	struct msg_generic_kprobe *e;
@@ -931,9 +931,11 @@ do_action(void *ctx, __u32 i, struct selector_action *actions, bool *post, bool 
 	polacct = POLICY_INVALID_ACT_;
 	switch (action) {
 	case ACTION_UPDATE_MAP:
-		// SAM: experiment
-		args = get_arg(e, 0);
-		bpf_printk("sam: do_action: %d", args[0]); // length
+		index = actions->act[++i];
+		offset = actions->act[++i];
+		size = actions->act[++i];
+		args = get_arg(e, index);
+		bpf_printk("sam: index: %d offset: %d data:%d", index, offset, args[0]);
 		break;
 	case ACTION_NOPOST:
 		*post = false;

@@ -546,6 +546,10 @@ spec:
                                   description: A signal number for signal action
                                   format: int32
                                   type: integer
+                                argSize:
+                                  description: An arg size for the raw access
+                                  format: int32
+                                  type: integer
                                 argSock:
                                   description: An arg index for the sock for trackSock
                                     and untrackSock actions
@@ -961,6 +965,10 @@ spec:
                                   type: array
                                 argSig:
                                   description: A signal number for signal action
+                                  format: int32
+                                  type: integer
+                                argSize:
+                                  description: An arg size for the raw access
                                   format: int32
                                   type: integer
                                 argSock:
@@ -1315,6 +1323,10 @@ spec:
                                   description: A signal number for signal action
                                   format: int32
                                   type: integer
+                                argSize:
+                                  description: An arg size for the raw access
+                                  format: int32
+                                  type: integer
                                 argSock:
                                   description: An arg index for the sock for trackSock
                                     and untrackSock actions
@@ -1730,6 +1742,10 @@ spec:
                                   type: array
                                 argSig:
                                   description: A signal number for signal action
+                                  format: int32
+                                  type: integer
+                                argSize:
+                                  description: An arg size for the raw access
                                   format: int32
                                   type: integer
                                 argSock:
@@ -2120,6 +2136,10 @@ spec:
                                   description: A signal number for signal action
                                   format: int32
                                   type: integer
+                                argSize:
+                                  description: An arg size for the raw access
+                                  format: int32
+                                  type: integer
                                 argSock:
                                   description: An arg index for the sock for trackSock
                                     and untrackSock actions
@@ -2535,6 +2555,10 @@ spec:
                                   type: array
                                 argSig:
                                   description: A signal number for signal action
+                                  format: int32
+                                  type: integer
+                                argSize:
+                                  description: An arg size for the raw access
                                   format: int32
                                   type: integer
                                 argSock:
@@ -3103,6 +3127,10 @@ spec:
                                   description: A signal number for signal action
                                   format: int32
                                   type: integer
+                                argSize:
+                                  description: An arg size for the raw access
+                                  format: int32
+                                  type: integer
                                 argSock:
                                   description: An arg index for the sock for trackSock
                                     and untrackSock actions
@@ -3518,6 +3546,10 @@ spec:
                                   type: array
                                 argSig:
                                   description: A signal number for signal action
+                                  format: int32
+                                  type: integer
+                                argSize:
+                                  description: An arg size for the raw access
                                   format: int32
                                   type: integer
                                 argSock:
@@ -3850,6 +3882,10 @@ spec:
                                   description: A signal number for signal action
                                   format: int32
                                   type: integer
+                                argSize:
+                                  description: An arg size for the raw access
+                                  format: int32
+                                  type: integer
                                 argSock:
                                   description: An arg index for the sock for trackSock
                                     and untrackSock actions
@@ -4265,6 +4301,10 @@ spec:
                                   type: array
                                 argSig:
                                   description: A signal number for signal action
+                                  format: int32
+                                  type: integer
+                                argSize:
+                                  description: An arg size for the raw access
                                   format: int32
                                   type: integer
                                 argSock:
