@@ -1163,8 +1163,9 @@ func ParseMatchAction(k *KernelSelectorState, action *v1alpha1.ActionSelector, a
 		WriteSelectorUint32(&k.data, action.ArgIndex)
 		WriteSelectorUint32(&k.data, action.ArgValue)
 	case ActionTypeUpdateMap:
-		// TODO
 		WriteSelectorUint32(&k.data, action.ArgIndex)
+		WriteSelectorUint32(&k.data, action.ArgOffset)
+		WriteSelectorUint32(&k.data, action.ArgSize)
 	default:
 		return fmt.Errorf("ParseMatchAction: act %d (%s) is missing a handler", act, actionTypeStringTable[act])
 	}
