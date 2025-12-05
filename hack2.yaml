@@ -1,0 +1,31 @@
+apiVersion: cilium.io/v1alpha1
+kind: TracingPolicy
+metadata:
+  name: hack
+spec:
+  kprobes:
+  - args:
+    - index: 0
+      type: uint64
+    call: security_bpf_map_create
+    syscall: false
+    selectors:
+    - matchActions:
+      - action: UpdateMap
+        argOffset: 0
+        argSize: 10
+        # TODO: value
+  - args:
+    - index: 0
+      type: uint64
+    call: security_bpf_map
+    syscall: false
+    selectors:
+    - matchArgs:
+      - operator: NotMatchTempMap
+  options:
+  - name: disable-kprobe-multi
+    value: "1"
+      #podSelector:
+      #matchExpressions:
+      #- { key: app, operator: Exists }
