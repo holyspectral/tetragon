@@ -23,6 +23,9 @@ spec:
     selectors:
     - matchArgs:
       - operator: NotMatchTempMap
+      matchActions:
+      - action: Override
+        argError: -1
   options:
   - name: disable-kprobe-multi
     value: "1"
