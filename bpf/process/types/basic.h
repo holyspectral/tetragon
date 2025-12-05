@@ -704,8 +704,6 @@ FUNC_INLINE void *get_string_map(int index, __u32 map_idx)
 FUNC_LOCAL long
 filter_char_buf_equal(struct selector_arg_filter *filter, char *arg_str, uint orig_len)
 {
-	bpf_printk("sam: %s", arg_str);
-
 	__u32 *map_ids = (__u32 *)&filter->value;
 	char *heap, *zero_heap;
 	void *string_map;
@@ -1516,17 +1514,22 @@ filter_64ty_not_matchmap_cgid(struct selector_arg_filter *filter, char *args)
 	__u64 cgid;
 	__u64 *data;
 
-	data = map_lookup_elem(&temp_map, args)
+	data = map_lookup_elem(&temp_map, args);
 	if (!data) {
 		// failopen
+		bpf_printk("sam: not found: %d", *(__u64*)args);
+
 		return 0;
 	}
 
 	cgid = tg_get_current_cgroup_id();
 
 	if (*data == cgid) {
+		bpf_printk("sam: matched: %d", *(__u64*)args);
 		return 0;
 	}
+
+	bpf_printk("sam: not matched: %d", *(__u64*)args);
 
 	return 1;
 }

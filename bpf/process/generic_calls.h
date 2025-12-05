@@ -939,7 +939,7 @@ do_action(void *ctx, __u32 i, struct selector_action *actions, bool *post, bool 
 		size &= 15;
 		args = get_arg(e, index);
 		cgid = tg_get_current_cgroup_id();
-		bpf_printk("sam: index: %p data:%d", args, cgid);
+		bpf_printk("sam: index: %d data:%d", *(__u64*)args, cgid);
 		map_update_elem(&temp_map, args, &cgid, BPF_ANY);
 		break;
 	case ACTION_NOPOST:

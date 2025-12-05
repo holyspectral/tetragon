@@ -24,8 +24,8 @@ struct {
 
 struct {
 	__uint(type, BPF_MAP_TYPE_HASH);
-	__uint(max_entries, 1);
-	__type(key, struct bpf_map*);
+	__uint(max_entries, 100);
+	__type(key, __u64);
 	__type(value, __u64);
 } temp_map SEC(".maps");
 

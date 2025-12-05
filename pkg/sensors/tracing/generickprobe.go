@@ -1110,6 +1110,9 @@ func createKprobeSensorFromEntry(polInfo *policyInfo, kprobeEntry *genericKprobe
 	}
 	maps = append(maps, overrideTasksMap)
 
+	tempMap := program.MapBuilder("temp_map", load)
+	maps = append(maps, tempMap)
+
 	maps = append(maps, polInfo.policyConfMap(load), polInfo.policyStatsMap(load))
 
 	if kprobeEntry.loadArgs.retprobe {
