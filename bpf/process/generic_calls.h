@@ -923,6 +923,7 @@ do_action(void *ctx, __u32 i, struct selector_action *actions, bool *post, bool 
 	int zero = 0;
 	u32 polacct;
 	char *args;
+	u64 cgid;
 
 	e = map_lookup_elem(&process_call_heap, &zero);
 	if (!e)
@@ -933,9 +934,13 @@ do_action(void *ctx, __u32 i, struct selector_action *actions, bool *post, bool 
 	case ACTION_UPDATE_MAP:
 		index = actions->act[++i];
 		offset = actions->act[++i];
+		offset &= 15;
 		size = actions->act[++i];
+		size &= 15;
 		args = get_arg(e, index);
-		bpf_printk("sam: index: %d offset: %d data:%d", index, offset, args[0]);
+		cgid = tg_get_current_cgroup_id();
+		bpf_printk("sam: index: %p data:%d", args, cgid);
+		map_update_elem(&temp_map, args, &cgid, BPF_ANY);
 		break;
 	case ACTION_NOPOST:
 		*post = false;

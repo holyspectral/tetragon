@@ -1247,6 +1247,7 @@ FUNC_INLINE long copy_bpf_map(char *args, unsigned long arg)
 	probe_read(&map_info->max_entries, sizeof(__u32),
 		   _(&bpfmap->max_entries));
 	probe_read(&map_info->map_name, BPF_OBJ_NAME_LEN, _(&bpfmap->name));
+	probe_read(&map_info->map_id, sizeof(__u32), _(&bpfmap->id));
 
 	return sizeof(struct bpf_map_info_type);
 }
@@ -1510,6 +1511,27 @@ filter_64ty_map(struct selector_arg_filter *filter, char *args)
 }
 
 FUNC_LOCAL long
+filter_64ty_not_matchmap_cgid(struct selector_arg_filter *filter, char *args)
+{
+	__u64 cgid;
+	__u64 *data;
+
+	data = map_lookup_elem(&temp_map, args)
+	if (!data) {
+		// failopen
+		return 0;
+	}
+
+	cgid = tg_get_current_cgroup_id();
+
+	if (*data == cgid) {
+		return 0;
+	}
+
+	return 1;
+}
+
+FUNC_LOCAL long
 filter_64ty_range(struct selector_arg_filter *filter, char *args)
 {
 	__u64 *v = (__u64 *)&filter->value;
@@ -1642,6 +1664,8 @@ filter_64ty(struct selector_arg_filter *filter, char *args)
 	case op_in_range:
 	case op_notin_range:
 		return filter_64ty_range(filter, args);
+	case op_not_match_tempmap:
+		return filter_64ty_not_matchmap_cgid(filter, args);
 #endif
 	}
 

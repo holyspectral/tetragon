@@ -12,6 +12,7 @@ struct bpf_map_info_type {
 	__u32 value_size;
 	__u32 max_entries;
 	char map_name[BPF_OBJ_NAME_LEN];
+	__u32 map_id;
 };
 
 #endif

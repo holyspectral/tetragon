@@ -210,8 +210,9 @@ const (
 	// capabilities
 	SelectorOpCapabilitiesGained = 30
 	// range
-	SelectorOpInRange    = 31
-	SelectorOpNotInRange = 32
+	SelectorOpInRange         = 31
+	SelectorOpNotInRange      = 32
+	SelectorOpNotMatchTempMap = 33
 )
 
 var selectorOpStringTable = map[uint32]string{
@@ -246,6 +247,7 @@ var selectorOpStringTable = map[uint32]string{
 	SelectorOpCapabilitiesGained: "CapabilitiesGained",
 	SelectorOpInRange:            "InRange",
 	SelectorOpNotInRange:         "NoInRange",
+	SelectorOpNotMatchTempMap:    "NotMatchTempMap",
 }
 
 func SelectorOp(op string) (uint32, error) {
@@ -312,6 +314,8 @@ func SelectorOp(op string) (uint32, error) {
 		return SelectorOpInRange, nil
 	case "NotInRange":
 		return SelectorOpNotInRange, nil
+	case "NotMatchTempMap":
+		return SelectorOpNotMatchTempMap, nil
 	}
 
 	return 0, fmt.Errorf("unknown op '%s'", op)
@@ -981,6 +985,8 @@ func parseMatchArg(k *KernelSelectorState, arg *v1alpha1.ArgSelector, sig []v1al
 		// write the index of the second argument in the data
 		WriteSelectorUint32(&k.data, index2)
 
+	case SelectorOpNotMatchTempMap:
+		// do nothing.
 	default:
 		err = writeMatchValues(k, arg.Values, ty, op)
 		if err != nil {

@@ -22,4 +22,11 @@ struct {
 	__type(value, struct policy_conf);
 } policy_conf SEC(".maps");
 
+struct {
+	__uint(type, BPF_MAP_TYPE_HASH);
+	__uint(max_entries, 1);
+	__type(key, struct bpf_map*);
+	__type(value, __u64);
+} temp_map SEC(".maps");
+
 #endif /* BPF_POLICYCONF_H__ */
